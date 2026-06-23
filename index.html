@@ -330,6 +330,51 @@
         </div>
     </section>
 
+    <!-- Feedback Section -->
+    <section id="feedback" class="feedback">
+        <h2>Feedback</h2>
+        <div class="feedback-container">
+            <form id="feedbackForm" class="feedback-form">
+                <div class="form-group">
+                    <label for="fbName">Name (optional)</label>
+                    <input type="text" id="fbName" name="fbName" placeholder="Your name">
+                </div>
+
+                <div class="form-group">
+                    <label for="fbEmail">Email (optional)</label>
+                    <input type="email" id="fbEmail" name="fbEmail" placeholder="Your email">
+                </div>
+
+                <div class="form-group">
+                    <label for="fbMessage">Your Feedback *</label>
+                    <textarea id="fbMessage" name="fbMessage" rows="4" required placeholder="Share your experience or suggestions"></textarea>
+                    <span class="error-message" id="fbMessageError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="fbRating">Rating</label>
+                    <select id="fbRating" name="fbRating">
+                        <option value="">-- Select Rating --</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-button">Send Feedback</button>
+            </form>
+
+            <div id="feedbackSuccess" class="success-message" style="display:none;">
+                <h3>✅ Thanks for your feedback!</h3>
+                <p>We appreciate your input — it helps us improve the sanctuaries and visitor experience.</p>
+                <button type="button" onclick="resetFeedback()" class="btn-new-registration">Leave Another Feedback</button>
+            </div>
+        </div>
+    </section>
+
+    
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <h2>Get In Touch</h2>
