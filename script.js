@@ -452,3 +452,65 @@ document.getElementById('duration')?.addEventListener('input', function() {
     if (value < 1) this.value = 1;
     if (value > 30) this.value = 30;
 });
+
+// Feedback form handling
+document.addEventListener('DOMContentLoaded', function() {
+    const feedbackForm = document.getElementById('feedbackForm');
+    if (!feedbackForm) return;
+
+    feedbackForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Clear previous errors
+        clearAllErrors();
+
+        if (validateFeedback()) {
+            submitFeedback();
+        }
+    });
+});
+
+function validateFeedback() {
+    const message = document.getElementById('fbMessage').value.trim();
+
+    if (!message) {
+        showError('fbMessageError', 'Please enter your feedback');
+        return false;
+    }
+
+    return true;
+}
+
+function submitFeedback() {
+    const feedback = {
+        id: 'FB' + Date.now(),
+        name: document.getElementById('fbName').value.trim(),
+        email: document.getElementById('fbEmail').value.trim(),
+        message: document.getElementById('fbMessage').value.trim(),
+        rating: document.getElementById('fbRating').value || null,
+        time: new Date().toLocaleString('en-IN')
+    };
+
+    // Store feedback in localStorage
+    let feedbacks = JSON.parse(localStorage.getItem('wildlifeFeedbacks')) || [];
+    feedbacks.push(feedback);
+    localStorage.setItem('wildlifeFeedbacks', JSON.stringify(feedbacks));
+
+    console.log('Feedback submitted:', feedback);
+
+    // Show thank you message
+    const form = document.getElementById('feedbackForm');
+    const success = document.getElementById('feedbackSuccess');
+    form.style.display = 'none';
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth' });
+}
+
+function resetFeedback() {
+    const form = document.getElementById('feedbackForm');
+    const success = document.getElementById('feedbackSuccess');
+    form.reset();
+    form.style.display = 'block';
+    success.style.display = 'none';
+    clearAllErrors();
+    form.scrollIntoView({ behavior: 'smooth' });
+}
